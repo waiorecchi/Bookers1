@@ -14,17 +14,19 @@
       <tr>
         <td><%= book.title %></td>
         <td><%= truncate(book.body, length: 50) %></td>
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', book_path(book.id) %></td>
+        <td><%= link_to 'Edit', edit_book_path(book.id) %></td>
+        <td><%= link_to 'Destroy', book_path(book.id), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+
 <br>
 
 <h1>New Book</h1>
+
 
 <%= form_with model: @book, local: true do |form| %>
   <div class="field">
@@ -43,3 +45,4 @@
     <%= form.submit :'Create Book'%>
   </div>
 <% end %>
+

@@ -13,6 +13,7 @@ class BooksController < ApplicationController
   end
 
   def new
+    @books = Book.all
     @book = Book.new
   end
 
@@ -21,6 +22,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to @book, notice: 'Book was successfully created'
     else
+      @books = Book.all  # 追加
       render :new
     end
   end
@@ -39,7 +41,7 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to '/books', notice: 'Book was successfully destroyed.'
+    redirect_to books_url, notice: 'Book was successfully destroyed.'
   end
 
   private
